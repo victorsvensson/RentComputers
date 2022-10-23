@@ -17,6 +17,7 @@ async function main() {
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.static("public"));
 app.use(methodOverride("_method")); //used to PUT, normally you can just get and post
 app.engine("ejs", ejsMate);
 
