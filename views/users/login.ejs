@@ -1,0 +1,30 @@
+<% layout('layouts/boilerplate') %>
+<%- include('../partials/flash')%>
+
+<head>
+    <link rel="stylesheet" href="css/register.css">
+  </head>
+  
+  <body class="text-center">
+      
+      <main class="form-signin w-100 m-auto">
+        <form action="/login" method="POST" class="validated-form" novalidate>
+          <h1 class="h3 mb-3 fw-normal text-center">Login</h1>
+      
+          <div class="form-floating">
+            <input class="form-control" type="text" id="floatingInput" name="username" placeholder="Username" required>
+            <label for="floatingInput">Username</label>
+          </div>
+          <div class="form-floating">
+            <input class="form-control" type="password" id="floatingPassword" name="password" placeholder="Password" required>
+            <label for="floatingPassword">Password</label>
+          </div>
+      
+          <div class="checkbox mb-3">
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        </form>
+        <a href="/register"><p class="text-center mt-4">Create a new account</p></a>
+      </main>
+      
+</body>
