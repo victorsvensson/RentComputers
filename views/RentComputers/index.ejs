@@ -1,25 +1,26 @@
 <% layout('layouts/boilerplate')%> 
-
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
   <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
     <span class="fs-4">Lånedatorer</span>
   </a>
 
-
   <ul class="nav nav-pills">
     <li class="nav-item"><a href="/RentComputers/" class="nav-link active" aria-current="page">Home</a></li>
     <li class="nav-item"><a href="/RentComputers/new" class="nav-link">Lägg till ny dator</a></li>
     <li class="nav-item"><a href="/RentComputers/remove" class="nav-link">Ta bort dator</a></li>
+
+    <form action="/logout" method="POST">
+      <li class="nav-item"><button type="submit" class="btn btn-danger" formmethod="POST">Logga ut</button></li>
+    </form>
   </ul>
 </header>
+<<<<<<< HEAD
 
-
-
-
-
-
+=======
+>>>>>>> 526d0f76f0df65d410e8915f13e282ad867e5ddf
 <div class="container text-center">
     <div class="row">
+      <%- include('../partials/flash')%>
       <div class="col">
         <table class="table">
             <thead>
@@ -34,13 +35,13 @@
             <tbody>
               <% for(let computer of rentComputer){ %> 
                 <% if(computer.status == false){ %> 
-                <form action="/RentComputers/<%=computer._id%>?_method=PUT" method="POST">
+                <form action="/RentComputers/<%=computer.inventoryID%>?_method=PUT" method="POST">
                   
                   <th scope="row"><%=computer.inventoryID%></th>
                   <td><%=computer.year%></td>
-                  <td><input class="form-control" type="text" id="name" name="rentcomputers[name]" required></td>
-                  <td><input class="form-control" type="number" id="number" name="rentcomputers[errandNumber]" required></td>
-                  <td><input type="hidden" id="status" name="rentcomputers[status]" value="true" /></td>
+                  <td><input class="form-control" type="text" id="name" name="name" required></td>
+                  <td><input class="form-control" type="number" id="number" name="errandNumber" required></td>
+                  <td><input type="hidden" id="status" name="status" value=1 /></td>
                   <td><button type="submit" class="btn btn-success btn-sm">></button></td>
             </form>
               </tr>
@@ -64,13 +65,19 @@
             <tbody>
               <% for(let computer of rentComputer){ %>
                 <% if(computer.status == true){ %> 
-                  <form action="/RentComputers/<%=computer._id%>?_method=PUT" method="POST">
+                  <form action="/RentComputers/<%=computer.inventoryID%>?_method=PUT" method="POST">
               <tr>
-                <th scope="row"><%=computer.inventoryID %></th>
+                <th scope="row"><%=computer.inventoryID%></th>
                 <td><%=computer.year%> </td>
                 <td><%=computer.name%> </td>
                 <td><%=computer.errandNumber%> </td>
-                <input type="hidden" id="status" name="rentcomputers[status]" value="false" />
+
+                <!-- <input type="hidden" id="name" name="name" />
+                <input type="hidden" id="number" name="errandNumber" /> -->
+
+                <input type="hidden" id="name" name="name" value="0" />
+                <input type="hidden" id="number" name="errandNumber" value="0" />
+                <input type="hidden" id="status" name="status" value=0 />
                 <td>
                   <button type="submit" class="btn btn-danger btn-sm">Återlämna</button>
                   </form>
@@ -82,4 +89,5 @@
           </table>
       </div>
   </div>
+  <%- include('../partials/footer')%>
 

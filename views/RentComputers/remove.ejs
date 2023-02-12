@@ -5,12 +5,15 @@
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
       <span class="fs-4">Lånedatorer</span>
     </a>
-  
     <ul class="nav nav-pills">
       <li class="nav-item"><a href="/RentComputers/" class="nav-link" aria-current="page">Home</a></li>
       <li class="nav-item"><a href="/RentComputers/new" class="nav-link">Lägg till ny dator</a></li>
       <li class="nav-item"><a href="/RentComputers/remove" class="nav-link active">Ta bort dator</a></li>
-    </ul>
+  
+      <form action="/logout" method="POST">
+        <li class="nav-item"><button type="submit" class="btn btn-danger" formmethod="POST">Logga ut</button></li>
+      </form>
+  </ul>
   </header>
 
 
@@ -27,11 +30,31 @@
               <tbody>
                 
                 <% for(let computer of rentComputer){ %> 
-                  <form action="/RentComputers/remove/<%=computer._id%>?_method=DELETE" method="POST">
+                  <form action="/RentComputers/remove/<%=computer.inventoryID%>?_method=DELETE" method="POST">
                     
                     <th scope="row"><%=computer.inventoryID%></th>
                     <td><%=computer.year%></td>
-                    <td><button type="submit" class="btn btn-danger">Ta bort</button></td>
+                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Ta bort</button></td>
+                    
+                    <!-- Dialogruta -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to delete <%=computer.inventoryID%> ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- -->
               </form>
                 </tr>
                   <% } %>
@@ -39,3 +62,5 @@
             </table>
         </div>
 </div>
+
+<%- include('../partials/footer')%>
