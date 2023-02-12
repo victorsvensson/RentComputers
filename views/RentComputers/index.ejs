@@ -8,19 +8,10 @@
     <li class="nav-item"><a href="/RentComputers/" class="nav-link active" aria-current="page">Home</a></li>
     <li class="nav-item"><a href="/RentComputers/new" class="nav-link">Lägg till ny dator</a></li>
     <li class="nav-item"><a href="/RentComputers/remove" class="nav-link">Ta bort dator</a></li>
-
-    <form action="/logout" method="POST">
-      <li class="nav-item"><button type="submit" class="btn btn-danger" formmethod="POST">Logga ut</button></li>
-    </form>
   </ul>
 </header>
-<<<<<<< HEAD
-
-=======
->>>>>>> 526d0f76f0df65d410e8915f13e282ad867e5ddf
 <div class="container text-center">
     <div class="row">
-      <%- include('../partials/flash')%>
       <div class="col">
         <table class="table">
             <thead>
@@ -71,9 +62,6 @@
                 <td><%=computer.year%> </td>
                 <td><%=computer.name%> </td>
                 <td><%=computer.errandNumber%> </td>
-
-                <!-- <input type="hidden" id="name" name="name" />
-                <input type="hidden" id="number" name="errandNumber" /> -->
 
                 <input type="hidden" id="name" name="name" value="0" />
                 <input type="hidden" id="number" name="errandNumber" value="0" />
