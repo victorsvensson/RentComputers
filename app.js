@@ -6,22 +6,12 @@ const mssql = require("mssql");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
-const flash = require("connect-flash");
+const config = require('./dbconfig');
 
 // Connect to the Microsoft SQL database
 main().catch((err) => console.log(err));
 
 async function main() {
-    const config = {
-        user: "sa",
-        password: "Testsson123!",
-        server: "PC970601",
-        database: "RentalComputers",
-        trustServerCertificate: true,
-        port: 64574
-
-    };
-
     try {
         await mssql.connect(config);
         console.log("Database is now connected");
